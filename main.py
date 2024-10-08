@@ -1,5 +1,3 @@
-from string import ascii_lowercase
-
 def read_whole_book(path: str) -> str:
     with open(path, 'r') as f:
         return f.read()
@@ -10,10 +8,14 @@ def count_words(book:str) -> int:
 
 def count_letters(book: str) -> dict:
     book = book.lower()
-    letters_counts_dict = {}
-    for letter in ascii_lowercase:
-        letters_counts_dict[letter] = book.count(letter)
-    return letters_counts_dict
+    chars_counts_dict = {}
+    for char in book:
+        if char in chars_counts_dict:
+            chars_counts_dict[char] += 1
+        else:
+            chars_counts_dict[char] = 1
+    return chars_counts_dict
+
 
 def main():
     frankie = read_whole_book("books/frankenstein.txt")
