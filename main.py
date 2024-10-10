@@ -17,6 +17,7 @@ def count_chars(book: str) -> dict:
     return chars_counts_dict
 
 def sort_letters(chars_dict: dict) -> dict:
+    """Extract alphanumerical characters from dict and sort remaining chars by occurence."""
     letters_dict = {}
     for char in chars_dict:
         if char.isalpha():
@@ -28,9 +29,11 @@ def sort_letters(chars_dict: dict) -> dict:
     return dict(sorted(letters_dict.items(), key=sort_on, reverse=True))
 
 def main():
-    frankie = read_whole_book("books/frankenstein.txt")
+    book_path = "books/frankenstein.txt"
+    frankie = read_whole_book(book_path)
     print(frankie)
     frankie_words_count = count_words(frankie)
+    print(f"---Begin report of {book_path} ---")
     print(f"That book has {frankie_words_count} words.")
     print()
     chars_counts_dict = count_chars(frankie)
@@ -38,6 +41,7 @@ def main():
     for letter in sorted_letters_dict:
         print(f"The '{letter}' character was found {sorted_letters_dict[letter]} times.")
 
+    print("---End report ---")
 
 
 if __name__ == "__main__":
